@@ -276,4 +276,4 @@ if __name__ == "__main__":
     images1 = load_images(options.path1)
     images2 = load_images(options.path2)
     fid_value = calculate_fid(images1, images2, options.use_multiprocessing, options.batch_size)
-    print("here", fid_value)
+    print("FID = ", fid_value)
