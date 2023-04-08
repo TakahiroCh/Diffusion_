@@ -1,0 +1,8 @@
+{
+  "diffusion_steps": 2560,
+  "max_epoch": 16,
+  "batch_size": 128,
+  "load_model": false,
+  "load_version_num": 0,
+  "create_sample_batch_size": 100
+}
