@@ -1,0 +1,12 @@
+{
+  "diffusion_steps": 1000,
+  "max_epoch": 100,
+  "batch_size": 64,
+  "load_model": false,
+  "load_version_num": 8,
+  "create_sample_batch_size": 2500,
+  "name_dataset": "FoldImages32",
+  "path2data": "/Data/RawData/fold_pics_32",
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}

@@ -8,8 +8,61 @@ Use 'python FID\fid.py --p1  ...\DiffusionModel\test_img\test_img\ --p2 ...\Diff
 
 wandb.ai: https://wandb.ai/ivan_ch/DiffusionModelMNIST?workspace=user-ivan_ch
 
-test_img, train_img: raw samples of MNIST; FID = 1.1078643047784453 (between folders) 
+test_img, train_img: raw samples of MNIST; FID = FID =  1.1078643047784453 (between folders) 
+train, val: raw samples of FoldImages32x32; FID = 5.884192542744302 (between folders) 
 
-
+MNIST
 versions:
 * Version 0 { batch: 128, steps: 1000, epoch: 30, learning_rate: 2e-4}; FID =  19.99149611355972 (between generated and test_img)
+
+
+FoldImages32:
+* Version 0 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 10,
+  "batch_size": 64,
+  "picture_size": [32, 32]
+},  learning_rate: 2e-4; FID = 180.53354925784905
+
+* Version 4 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 10,
+  "batch_size": 128,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 162.79946719161373
+
+* Version 5 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 10,
+  "batch_size": 64,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 162.79946719161373
+
+
+* Version 6 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 25,
+  "batch_size": 64,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 113.22502025710958
+
+
+* Version 7 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 50,
+  "batch_size": 64,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 73.27725868675091
+
+
+* Version 8 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 100,
+  "batch_size": 64,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 84.79603973304424
