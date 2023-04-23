@@ -7,6 +7,7 @@ Use create_mnist_images afterwards to create folders with training/tests images
 Use 'python FID\fid.py --p1  ...\DiffusionModel\test_img\test_img\ --p2 ...\DiffusionModel\OutputSamples\steps_{number of steps} -b {batches used in config}' to get value of FID (absolute paths)
 
 wandb.ai: https://wandb.ai/ivan_ch/DiffusionModelMNIST?workspace=user-ivan_ch
+https://wandb.ai/ivan_ch/DiffusionModelFoldImages32?workspace=user-ivan_ch
 
 test_img, train_img: raw samples of MNIST; FID = FID =  1.1078643047784453 (between folders) 
 train, val: raw samples of FoldImages32x32; FID = 5.884192542744302 (between folders) 
