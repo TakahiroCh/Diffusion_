@@ -1,0 +1,14 @@
+{
+  "max_epoch": 50,
+  "batch_size": 64,
+  "load_model": true,
+  "load_version_num": 2,
+  "create_sample_batch_size": 100,
+  "name_dataset": "MNIST",
+  "path2data": "/Data/RawData/fold_pics_32",
+  "picture_size": [32, 32],
+  "learning_rate": 0.005,
+  "additional": "",
+  "hidden_size": 128,
+  "vae_alpha": 1024
+}

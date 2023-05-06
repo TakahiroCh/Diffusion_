@@ -35,6 +35,7 @@ if __name__ == '__main__':
     max_epoch = params['max_epoch']
     batch_size = params['batch_size']
     learning_rate = params['learning_rate']
+    additional = params['additional']
 
     # Loading parameters
     load_model = params['load_model']
@@ -123,10 +124,13 @@ if __name__ == '__main__':
 
     gen_samples = (gen_samples * 255).type(torch.uint8)
 
-    if not os.path.exists(absolute_path + f'/OutputSamples/{dataset_choice}/batch_{batch_size}_epoch_{max_epoch}_steps_{diffusion_steps}'):
-        os.makedirs(absolute_path + f'/OutputSamples/{dataset_choice}/batch_{batch_size}_epoch_{max_epoch}_steps_{diffusion_steps}')
+    if not os.path.exists(absolute_path + f'/OutputSamples/{dataset_choice}/version_{load_version_num}_steps_{diffusion_steps}_{additional}'):
+        os.makedirs(absolute_path + f'/OutputSamples/{dataset_choice}/version_{load_version_num}_steps_{diffusion_steps}_{additional}')
 
     for i in range(gen_samples.shape[0]):
         for j in range(gen_samples.shape[1]):
+            # print(gen_samples[i][j].cpu().numpy())
             new_image = Image.fromarray(gen_samples[i][j].cpu().numpy())
-            new_image.save(absolute_path + f'/OutputSamples/{dataset_choice}/batch_{batch_size}_epoch_{max_epoch}_steps_{diffusion_steps}/{time}_' + str(i) + "_" + str(j) + ".png")
+            new_image.save(absolute_path + f'/OutputSamples/{dataset_choice}/version_{load_version_num}_steps_{diffusion_steps}_{additional}/{time}_' + str(i) + "_" + str(j) + ".png")
+            # new_image = DDM.train.inverse_transform(gen_samples[i][j].cpu().numpy())
+            # new_image.save(absolute_path + f'/OutputSamples/{dataset_choice}/version_{load_version_num}_steps_{diffusion_steps}_{additional}/{time}_' + str(i) + "_" + str(j) + ".png")

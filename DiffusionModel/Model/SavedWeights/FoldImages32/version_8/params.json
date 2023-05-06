@@ -1,6 +1,6 @@
 {
-  "diffusion_steps": 1000,
-  "max_epoch": 100,
+  "diffusion_steps": 1500,
+  "max_epoch": 50,
   "batch_size": 64,
   "load_model": false,
   "load_version_num": 8,

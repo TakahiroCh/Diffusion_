@@ -1,6 +1,6 @@
 import pytorch_lightning as pl
 import math
-from modules import *
+from Model.modules import *
 from torchvision.models import inception_v3
 
 
@@ -52,8 +52,9 @@ class PartialInceptionNetwork(nn.Module):
 
 
 class DiffusionModel(pl.LightningModule):
-    def __init__(self, in_size, t_range, img_depth):
+    def __init__(self, learning_rate, in_size, t_range, img_depth):
         super().__init__()
+        self.learning_rate = learning_rate
         self.beta_small = 1e-4
         self.beta_large = 0.02
         self.t_range = t_range
@@ -137,7 +138,7 @@ class DiffusionModel(pl.LightningModule):
         """
         with torch.no_grad():
             if t > 1:
-                z = torch.randn(x.shape)
+                z = torch.randn(x.shape).to(torch.device('cuda'))
             else:
                 z = 0
             e_hat = self.forward(x, t.view(1, 1).repeat(x.shape[0], 1))
@@ -158,5 +159,5 @@ class DiffusionModel(pl.LightningModule):
         return
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=2e-4)
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         return optimizer

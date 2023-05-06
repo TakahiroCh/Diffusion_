@@ -23,17 +23,6 @@ class DiffSet(Dataset):
         self.path2data = path2data
         self.name_dataset = name_dataset
         self.picture_size = picture_size
-
-        if transform is None:
-            self.transform = transforms.Compose([
-                # transforms.ToPILImage(),
-                transforms.Resize((self.picture_size[0], self.picture_size[1])),
-                transforms.ToTensor(),
-                # transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                #                      std=[0.229, 0.224, 0.225])
-            ])
-        else:
-            self.transform = transform
         
         datasets = {
             "MNIST": MNIST,
@@ -83,6 +72,28 @@ class DiffSet(Dataset):
                 image = self.transform(current_image)
                 return image
             self.get_item = get_item
+
+        if transform is None:
+            self.depth_norm_mean = [0.5 for _ in range(self.depth)]
+            self.depth_norm_std = [0.5 for _ in range(self.depth)]
+            self.transform = transforms.Compose([
+                # transforms.ToPILImage(),
+                transforms.Resize((self.picture_size[0], self.picture_size[1])),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=self.depth_norm_mean, std=self.depth_norm_std)
+                # transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                #                      std=[0.229, 0.224, 0.225])
+            ])        
+            self.inverse_transform = transforms.Compose([
+              transforms.ToTensor(),
+              transforms.Normalize(mean=[0 for _ in range(self.depth)],
+                                   std=[1 / x for x in self.depth_norm_std]),
+              transforms.Normalize(mean=[-x for x in self.depth_norm_mean],
+                                   std=[1. for _ in range(self.depth)]),
+              transforms.ToPILImage()])
+        else:
+            self.transform = transform
+            self.inverse_transform = transforms.Compose([transforms.ToPILImage()])
 
     def __len__(self):
         return self.dataset_len

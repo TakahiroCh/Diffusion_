@@ -58,6 +58,7 @@ FoldImages32:
   "picture_size": [32, 32],
   "learning_rate": 2e-4
 }, FID = 73.27725868675091
+Transform = 73.74181602016901
 
 
 * Version 8 = {
@@ -67,3 +68,19 @@ FoldImages32:
   "picture_size": [32, 32],
   "learning_rate": 2e-4
 }, FID = 84.79603973304424
+
+* Version 8 (new) = {
+  "diffusion_steps": 1500,
+  "max_epoch": 50,
+  "batch_size": 64,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 73.76131269149471 (generating 2500 images, took 41m)
+
+* Version 9 = {
+  "diffusion_steps": 1000,
+  "max_epoch": 50,
+  "batch_size": 128,
+  "picture_size": [32, 32],
+  "learning_rate": 2e-4
+}, FID = 260.34303517745775
